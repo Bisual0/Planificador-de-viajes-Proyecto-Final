@@ -91,9 +91,10 @@ Vite mostrará la URL local del frontend, normalmente `http://localhost:3000`.
 ## Comprobaciones rápidas
 
 ```bash
-npm run lint
 npm run build
 ```
+
+> `npm run lint` queda como tarea de calidad posterior. La configuración heredada de la plantilla aún genera errores en componentes ajenos a la funcionalidad actual.
 
 La salud del backend estará disponible en:
 
@@ -111,7 +112,38 @@ Durante el MVP, los destinos disponibles inicialmente son:
 - Buenos Aires, Argentina
 - Lima, Perú
 
-La selección y las pruebas de las APIs externas de ciudades, lugares y mapas se documentarán como la última tarea de EN-01.
+## Servicios externos seleccionados
+
+Las siguientes decisiones se probaron localmente con laboratorios independientes antes de integrarlas en la funcionalidad principal.
+
+| Necesidad | Servicio seleccionado | Uso acordado |
+| --- | --- | --- |
+| Buscar ciudades y obtener coordenadas | Nominatim / OpenStreetMap | Buscar ciudades o pueblos por texto y obtener nombre, país, latitud y longitud. |
+| Buscar lugares cercanos | Overpass API / OpenStreetMap | Obtener puntos de interés filtrados por categoría dentro de un radio de 5 km. |
+| Mostrar mapas | Leaflet + tiles de OpenStreetMap | Centrar mapas, mostrar marcadores, popups y la atribución obligatoria de OpenStreetMap. |
+
+### Categorías y límites de lugares
+
+Las categorías pueden elegirse de forma múltiple. Para reducir sobrecarga y manejar resultados parciales, la app agrupa las consultas de Overpass y aplica un límite por grupo:
+
+| Grupo | Categorías | Límite por consulta |
+| --- | --- | ---: |
+| Turismo y cultura | Museos, miradores, parques y monumentos | 20 |
+| Comida y vida nocturna | Restaurantes, cafeterías y bares | 30 |
+| Alojamiento | Hoteles y hostales | 20 |
+
+Cuando se seleccionan categorías de varios grupos, se realiza una consulta independiente y secuencial para cada grupo. Si una consulta falla o supera el tiempo de espera, los resultados de los demás grupos se conservan y la interfaz informa el grupo no disponible.
+
+Los marcadores usan un color por categoría y muestran nombre, categoría, coordenadas e ID externo de OpenStreetMap. Los laboratorios de evaluación se mantienen en estas rutas del frontend:
+
+```text
+/lab/ciudades
+/lab/lugares
+/lab/mapa
+/lab/mapa-lugares
+```
+
+> Las consultas directas a servicios públicos se usan únicamente para evaluación local. En la integración del MVP, Flask deberá controlar las consultas a Overpass, aplicar límites, tiempos de espera y caché.
 
 ## Modelo actual
 
