@@ -13,6 +13,8 @@ import { PlacesLab } from "./pages/PlacesLab";
 import { MapLab } from "./pages/MapLab";
 import { PlacesMapLab } from "./pages/PlacesMapLab";
 import { Dev } from "./pages/Dev";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -26,6 +28,8 @@ export const router = createBrowserRouter(
         <Route path="/lab/mapa" element={<MapLab />} />
         <Route path="/lab/mapa-lugares" element={<PlacesMapLab />} />
         <Route path="/dev" element={<Dev />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Route>
     )
 );

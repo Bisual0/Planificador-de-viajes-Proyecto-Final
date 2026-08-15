@@ -18,8 +18,8 @@ export const Navbar = () => (
 							<i className="fa-regular fa-user fs-5" aria-hidden="true" />
 						</button>
 						<ul className="dropdown-menu dropdown-menu-end border-0 shadow-sm mt-2">
-							<li><button className="dropdown-item" type="button">Iniciar sesión</button></li>
-							<li><button className="dropdown-item" type="button">Registrarse</button></li>
+							<li><Link to="/login" className="dropdown-item">Iniciar sesión</Link></li>
+							<li><Link to="/register" className="dropdown-item">Registrarse</Link></li>
 						</ul>
 					</li>
 				</ul>
