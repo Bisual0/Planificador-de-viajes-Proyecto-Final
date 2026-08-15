@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+
+:root {
+	font-family: 'DM Sans', sans-serif;
+	color: #12343B;
+	background: #EAF7FA;
+}
+
+html {
+	scroll-behavior: smooth;
+	scrollbar-color: #12343B transparent;
+	scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+	width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+	background: #12343B;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	background-clip: padding-box;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+	background: #0F6B78;
+	background-clip: padding-box;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	background: #EAF7FA;
+}
+
+#root {
+	min-height: 100vh;
+}
+
+.object-fit-cover {
+	object-fit: cover;
+}
+
+.py-lg-6 {
+	padding-top: 6rem !important;
+	padding-bottom: 6rem !important;
+}
+
+@media (max-width: 991.98px) {
+	.py-lg-6 {
+		padding-top: 4rem !important;
+		padding-bottom: 4rem !important;
+	}
+}
